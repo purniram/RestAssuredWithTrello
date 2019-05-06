@@ -7,4 +7,5 @@ public class ListKeySet {
     String pos;
     String subscribed;
     String softLimit;
+
 }

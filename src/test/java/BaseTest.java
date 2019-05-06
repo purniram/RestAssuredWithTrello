@@ -24,7 +24,7 @@ public class BaseTest {
     @BeforeSuite
     public void setup() {
 
-        RestAssured.baseURI = "https://api.trello.com/1/";
+        RestAssured.baseURI = Constants.baseURL;
 
         queryParam.put("key", key);
         queryParam.put("token", token);
@@ -33,8 +33,7 @@ public class BaseTest {
 
 
     @BeforeClass
-    public void createBoard()
-    {
+    public void createBoard() {
         Response response =
 
                 given()
@@ -74,15 +73,5 @@ public class BaseTest {
 
     }
 
-
-    public ArrayList<String> getListsFromMap (List<HashMap<String,String>> masterList, String key )
-    {
-        ArrayList<String>  lists = new ArrayList<String>();
-        for ( HashMap<String, String> map : masterList)
-        {
-            lists.add(map.get(key));
-        }
-        return lists;
-    }
-
 }
+
