@@ -14,12 +14,12 @@ import static io.restassured.RestAssured.given;
 
 public class BaseTest {
 
-    public final String token = "";
-    public final String key = "";
+    public final String token = "bf0af85fd0e2bfbdd384420cd377192067e780cca8b1b756090bebff88dcc633";
+    public final String key = "63653eea2f3c36c805323c8fe3e6cf79";
 
     protected String boardId;
     public String boardName = "Board RestAssured";
-    JSONObject queryParam = new JSONObject();
+    public JSONObject queryParam = new JSONObject();
 
     @BeforeSuite
     public void setup() {
@@ -30,7 +30,6 @@ public class BaseTest {
         queryParam.put("token", token);
 
     }
-
 
     @BeforeClass
     public void createBoard() {

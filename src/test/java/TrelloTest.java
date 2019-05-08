@@ -34,16 +34,14 @@ public class TrelloTest extends BaseTest{
 
          given()
 
-                .pathParam("id", boardId)
-                 .queryParam("key",key)
-                 .queryParam("token",token)
-                .contentType(ContentType.JSON).log().all().
+                 .pathParam("id", boardId)
+                 .queryParam("key", key)
+                 .queryParam("token", token)
+                 .contentType(ContentType.JSON).log().all().
          when()
-
-                 .log().all()
                 .get(Constants.getListsInBoard).
          then()
-               .extract().jsonPath().getList("$");
+                .extract().jsonPath().getList("$");
 
         assertEquals(getListsFromMap(lists,"name") , expectedListNames);
         listIds = getListsFromMap(lists,"id");
@@ -77,14 +75,13 @@ public class TrelloTest extends BaseTest{
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("name", cardName);
         jsonBody.put("idList", listIds.get(0));
+        jsonBody.put("key", key);
+        jsonBody.put("token", token);
 
         Response response =
-
             given()
-                .queryParam("key",key)
-                .queryParam("token", token)
                 .contentType(ContentType.JSON)
-                .body(jsonBody)
+                .body(jsonBody.toJSONString())
                 .log().all().
             when()
                 .post(Constants.createCard);
@@ -108,16 +105,15 @@ public class TrelloTest extends BaseTest{
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("name", updateCardName);
         jsonBody.put("idList", listIds.get(0));
+        jsonBody.put("key", key);
+        jsonBody.put("token", token);
 
         Response response =
 
                 given()
-                        .queryParam("key",key)
-                        .queryParam("token", token)
                         .contentType(ContentType.JSON)
                         .body(jsonBody)
                         .pathParam("cardId", cardId)
-                        .contentType(ContentType.JSON)
                         .log().all().
                 when()
                         .put(Constants.updateCard);
@@ -131,9 +127,7 @@ public class TrelloTest extends BaseTest{
     public void ValidateCardDeleted()
     {
              RequestSpecification requestSpec =  given()
-                        .queryParam("key",key)
-                        .queryParam("token", token)
-                        .contentType(ContentType.JSON)
+                        .body(queryParam.toJSONString())
                         .pathParam("cardId", cardId)
                         .contentType(ContentType.JSON);
 
