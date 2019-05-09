@@ -14,8 +14,11 @@ import static io.restassured.RestAssured.given;
 
 public class BaseTest {
 
-    public final String token = "bf0af85fd0e2bfbdd384420cd377192067e780cca8b1b756090bebff88dcc633";
-    public final String key = "63653eea2f3c36c805323c8fe3e6cf79";
+   // public final String token = "bf0af85fd0e2bfbdd384420cd377192067e780cca8b1b756090bebff88dcc633";
+   // public final String key = "63653eea2f3c36c805323c8fe3e6cf79";
+
+    public final String token = System.getProperty("token");
+    public final String key = System.getProperty("key");
 
     protected String boardId;
     public String boardName = "Board RestAssured";
