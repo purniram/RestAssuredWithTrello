@@ -14,7 +14,8 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class BaseTest {
-    
+
+    // getting token from parameters in jenkins
 
     public final String token = System.getProperty("token");
     public final String key = System.getProperty("key");
